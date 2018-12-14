@@ -1,5 +1,5 @@
 # FortniteShopBot
-This is a twitter bot that tweets a daily Fortnite Shop image
+This is a twitter bot written in Python that tweets a daily Fortnite Shop image
 
 The build uses the following libraries and APIs:
 * tweepy
