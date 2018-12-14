@@ -21,6 +21,7 @@ def create_tweet():
     # Replace this with your code!
     date = strftime("%B %d, %Y")
     text = "#Fortnite Shop Update at 4:00pm PST, " + date + ". (fnbr.co/shop)\n\nSupport-A-Creator tag: FNMasterCom"
+    create_shop(date)
     return text
 
 
@@ -58,6 +59,6 @@ def log(message):
 
 if __name__ == "__main__":
     tweet_text = create_tweet()
-    print(tweet_text)
-    print_shop()
+
+    #print_shop()
     #tweet(tweet_text)
