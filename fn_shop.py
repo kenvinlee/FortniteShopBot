@@ -26,24 +26,12 @@ def print_shop():
         print('Error getting shop')
 
 
-def download_icon(item_name, item_type):
-    item_limit = 15  # integer between 1 and 15
-    headers = {
-        'x-api-key': '6f83f56f-4fb8-4e36-9f5f-eb5b888f2e9e',
+def download_icon(item_name, icon_url):
+    headers = {'x-api-key': '6f83f56f-4fb8-4e36-9f5f-eb5b888f2e9e'}
 
-    }
-    request = aiofnbr.Images(api_key, search=item_name, type=item_type, limit=item_limit)
-    response = loop.run_until_complete(request.send())
-    if response.status == 200 and response.type == aiofnbr.constants.IMAGE_TYPE:
-        print('Results:')
-        image_data = response.data
-        for item in image_data.results:
-            f = open('icons/{0}.png'.format(item.name), 'wb')
-            f.write(urllib.request.urlopen(item.icon).read(), headers)
-            f.close()
-    else:
-        print('Error searching images')
-
+    f = open('icons/{0}.png'.format(item_name), 'wb')
+    f.write(urllib.request.urlopen(icon_url).read(), headers)
+    f.close()
 
 
 def create_shop(date):
