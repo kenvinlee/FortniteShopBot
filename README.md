@@ -2,8 +2,8 @@
 This is a twitter bot written in Python that tweets a daily Fortnite Shop image
 
 The build uses the following libraries and APIs:
-* tweepy
-* Pillow
+* tweepy (https://pypi.org/project/tweepy/)
+* Pillow (https://pillow.readthedocs.io/en/5.3.x/installation.html)
 * fnbr.co's API (uses this wrapper https://pypi.org/project/fnbr-api/)
 
 A small cheat is employed for the translucent background.
