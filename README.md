@@ -13,6 +13,6 @@ For those hoping to use this, there's a few things you'll need:
 * Put your API keys in a secrets.py file
 * Unsure if the lack of the fonts used might cause a problem, but you might have to acquire the Burbank fonts
 
-If you plug in your API keys and acquires the right fonts, you can most likely run a cron job to have the shop Tweeted every day. You might want to edit the shop image somewhat though.
+If you plug in your API keys and acquire the right fonts, you can most likely run a cron job to have the shop Tweeted every day. You might want to edit the shop image somewhat though.
 
 The bot is meant for private use of the @FNMasterCom Twitter. This repo is to help others understand how to piece something like this together. Enjoy! 
