@@ -19,8 +19,8 @@ api = tweepy.API(auth)
 def create_tweet():
     """Create the text of the tweet you want to send."""
     # Replace this with your code!
-    date = strftime("%B %d, %Y")
-    text = "#Fortnite Shop Update at 4:00pm PST, " + date + ". (fnbr.co/shop)\n\nSupport-A-Creator tag: FNMasterCom"
+    date = strftime("4:00pm PST, %B %d, %Y")
+    text = "#Fortnite Shop Update at " + date + ". (fnbr.co/shop)\n\nSupport-A-Creator tag: FNMasterCom"
     create_shop(date)
     return text
 
