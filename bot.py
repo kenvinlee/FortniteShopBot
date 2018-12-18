@@ -21,6 +21,7 @@ def create_tweet():
     # Replace this with your code!
     date = strftime("4:00pm PST, %B %d, %Y")
     text = "#Fortnite Shop Update at " + date + ". (fnbr.co/shop)\n\nSupport-A-Creator tag: FNMasterCom"
+    # text = "Testing Twitter bot capability, tweet will be deleted almost immediately"
     create_shop(date)
     return text
 
@@ -37,12 +38,12 @@ def tweet(text):
         log("Tweeted: " + text)
 
 
-def tweet_with_media(text, media):
+def tweet_with_media(media, text):
     """Send a tweet with text and media"""
 
     # Send the tweet and log success or failure
     try:
-        api.update_status(media, text)
+        api.update_with_media(media, text)
     except tweepy.error.TweepError as e:
         log(e.message)
     else:
@@ -59,6 +60,4 @@ def log(message):
 
 if __name__ == "__main__":
     tweet_text = create_tweet()
-
-    #print_shop()
-    #tweet(tweet_text)
+    tweet_with_media("daily_shop.png", tweet_text)

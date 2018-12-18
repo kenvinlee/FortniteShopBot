@@ -234,19 +234,19 @@ def draw_radial_gradient(outer, inner, dimensions):
     gradient = Image.new("RGB", dimensions)
     cx = dimensions[0] * 0.5
     cy = dimensions[1] * 0.5
+    ext = (dimensions[0] / 2) ** 2 + (dimensions[1] / 2) ** 2
 
     for y in range(dimensions[1]):
         for x in range(dimensions[0]):
             # Find the distance to the center
-            dist_to_center = math.sqrt((x - dimensions[0] / 2) ** 2 + (y - dimensions[1] / 2) ** 2)
-
-            # Make it on a scale from 0 to 1
-            dist_to_center = float(dist_to_center) / (math.sqrt(2) * dimensions[0] / 2)
+            d = ((x - cx) ** 2) + ((y - cy) ** 2)
+            dist_to_center = min(1, d / ext)
+            inv = 1 - dist_to_center
 
             # Calculate r, g, and b values
-            r = outer_color[0] * dist_to_center + inner_color[0] * (1 - dist_to_center)
-            g = outer_color[1] * dist_to_center + inner_color[1] * (1 - dist_to_center)
-            b = outer_color[2] * dist_to_center + inner_color[2] * (1 - dist_to_center)
+            r = outer_color[0] * dist_to_center + inner_color[0] * inv
+            g = outer_color[1] * dist_to_center + inner_color[1] * inv
+            b = outer_color[2] * dist_to_center + inner_color[2] * inv
 
             # Place the pixel
             gradient.putpixel((x, y), (int(r), int(g), int(b)))
