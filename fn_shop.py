@@ -3,9 +3,10 @@ import asyncio
 import requests
 import shutil
 import math
+from secrets import *
 from PIL import Image, ImageDraw, ImageColor, ImageFont
 
-api_key = "6f83f56f-4fb8-4e36-9f5f-eb5b888f2e9e"
+api_key = FNBR_API_KEY
 loop = asyncio.get_event_loop()
 
 
