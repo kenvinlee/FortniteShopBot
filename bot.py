@@ -1,5 +1,6 @@
 import os
 import tweepy
+import time
 from secrets import *
 from time import gmtime, strftime
 from fn_shop import *
@@ -59,5 +60,8 @@ def log(message):
 
 
 if __name__ == "__main__":
+    for i in range(1, 10):
+        print("slept for {0} seconds".format(i))
+        time.sleep(1)
     tweet_text = create_tweet()
     tweet_with_media("daily_shop.png", tweet_text)

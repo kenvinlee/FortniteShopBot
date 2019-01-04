@@ -189,6 +189,7 @@ def create_icon(name, price, rarity):
 
     # icon
     base_icon = Image.open(image_name).convert("RGBA")
+    base_icon.thumbnail((512, 512), Image.ANTIALIAS)
     icon.paste(base_icon, (0, 0), base_icon)
 
     # name text background
