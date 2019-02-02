@@ -40,6 +40,18 @@ def download_icon(item_name, icon_url):
 
 
 def create_shop(date):
+    """Make today's shop image (produces a .png)
+
+    date - the date that appears at the top of the image
+
+    This function performs the following steps:
+    1. Gets the daily shop information using fnbr.co's API
+    2. Creates icons for each item and saves them in two arrays
+    3. Creates a blank canvas for the shop image
+    4. For each icon created, paste them on the canvas dynamically, with 4 icons per row
+    5. Saves the image as daily_shop.png
+    """
+
     request = aiofnbr.Shop(api_key)
     response = loop.run_until_complete(request.send())
 
@@ -119,7 +131,7 @@ def add_shop_items(start_x, start_y, shop_array, shop_image):
         item_x += 155
         counter += 1
 
-        if counter > 3:
+        if counter > 3 and (len(shop_array) % 4) != 0:
             counter = 0
             item_y += 186
             item_x = start_x
