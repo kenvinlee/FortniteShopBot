@@ -80,29 +80,24 @@ def create_shop(date):
 
     shop_image_name = "daily_shop.png"
     shop_width = 750
-    shop_height = (math.ceil(len(daily_shop) / 4) + math.ceil(len(featured_shop) / 4)) * 181 + 250
+    shop_height = (math.ceil(len(daily_shop) / 4) + math.ceil(len(featured_shop) / 4)) * 181 + 425
 
-    shop_image = Image.new("RGBA", (shop_width, shop_height))
-    draw = ImageDraw.Draw(shop_image, "RGBA")
-    draw.rectangle(((0, 0), (shop_width, shop_height)), fill="#3b3a3a")
+    shop_image = Image.open("Fortnite Daily Shop Background.jpg")
+    draw = ImageDraw.Draw(shop_image, "RGB")
 
     # title
+    shop_header_image = Image.open("Fortnite-Daily-Shop-Header.jpg")
+    shop_image.paste(shop_header_image, (0, 0))
+
+    start_x = 67
+    start_y = 298
+
+    # draw Daily Itmes
     font_size = 32
     font = ImageFont.truetype("BURBANKSMALL-BLACK.OTF", size=font_size)
 
-    title = "Fortnite Daily Shop"
-    title_x = (shop_width - draw.textsize(title, font=font)[0]) / 2
-    date_x = (shop_width - draw.textsize(date, font=font)[0]) / 2
-
-    draw.text((title_x, 20), title, fill="#FFFFFF", font=font)
-    draw.text((date_x, 55), date, fill="#b5b0af", font=font)
-
-    start_x = 67
-    start_y = 150
-
-    # draw Daily Itmes
     daily_text = "Daily Items"
-    draw.text((start_x, 110), daily_text, fill="#FFFFFF", font=font)
+    draw.text((start_x, 258), daily_text, fill="#FFFFFF", font=font)
     shop = add_shop_items(start_x, start_y, daily_shop, shop_image)
     shop_image = shop[0]
 
@@ -114,7 +109,8 @@ def create_shop(date):
 
     start_y += 40
     shop = add_shop_items(start_x, start_y, featured_shop, shop_image)
-    shop_image = shop[0]
+    shop_area = (0, 0, shop_width, shop_height)
+    shop_image = shop[0].crop(shop_area)
 
     shop_image.save(shop_image_name, "PNG")
 
