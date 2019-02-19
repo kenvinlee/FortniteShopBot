@@ -92,23 +92,23 @@ def create_shop(date):
     start_x = 67
     start_y = 298
 
-    # draw Daily Itmes
     font_size = 32
     font = ImageFont.truetype("BURBANKSMALL-BLACK.OTF", size=font_size)
 
-    daily_text = "Daily Items"
-    draw.text((start_x, 258), daily_text, fill="#FFFFFF", font=font)
-    shop = add_shop_items(start_x, start_y, daily_shop, shop_image)
+    # draw Featured Items
+    featured_text = "Featured Items"
+    draw.text((start_x, 258), featured_text, fill="#FFFFFF", font=font)
+    shop = add_shop_items(start_x, start_y, featured_shop, shop_image)
     shop_image = shop[0]
 
     start_y = shop[1] + 200
 
-    # draw Featured Items
-    featured_text = "Featured Items"
-    draw.text((start_x, start_y), featured_text, fill="#FFFFFF", font=font)
+    # draw Daily Items
+    daily_text = "Daily Items"
+    draw.text((start_x, start_y), daily_text, fill="#FFFFFF", font=font)
 
     start_y += 40
-    shop = add_shop_items(start_x, start_y, featured_shop, shop_image)
+    shop = add_shop_items(start_x, start_y, daily_shop, shop_image)
     shop_area = (0, 0, shop_width, shop_height)
     shop_image = shop[0].crop(shop_area)
 
@@ -116,7 +116,8 @@ def create_shop(date):
 
 
 def add_shop_items(start_x, start_y, shop_array, shop_image):
-    counter = 0
+    icon_counter = 0
+    row_counter = 0
     item_x = start_x
     item_y = start_y
 
@@ -125,12 +126,17 @@ def add_shop_items(start_x, start_y, shop_array, shop_image):
         shop_image.paste(base_icon, (item_x, item_y), base_icon)
 
         item_x += 155
-        counter += 1
+        icon_counter += 1
 
-        if counter > 3 and (len(shop_array) % 4) != 0:
-            counter = 0
-            item_y += 186
+        if icon_counter > 3:
+            icon_counter = 0
             item_x = start_x
+
+            if len(shop_array) % 4 == 0:
+                row_counter += 1
+
+            if row_counter != (len(shop_array) / 4):
+                item_y += 186
 
     return shop_image, item_y
 
