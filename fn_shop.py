@@ -120,7 +120,8 @@ def create_shop(date):
 
 
 def add_shop_items(start_x, start_y, shop_array, shop_image):
-    counter = 0
+    icon_counter = 0
+    row_counter = 0
     item_x = start_x
     item_y = start_y
 
@@ -129,12 +130,17 @@ def add_shop_items(start_x, start_y, shop_array, shop_image):
         shop_image.paste(base_icon, (item_x, item_y), base_icon)
 
         item_x += 155
-        counter += 1
+        icon_counter += 1
 
-        if counter > 3 and (len(shop_array) % 4) != 0:
-            counter = 0
-            item_y += 186
+        if icon_counter > 3:
+            icon_counter = 0
             item_x = start_x
+
+            if len(shop_array) % 4 == 0:
+                row_counter += 1
+
+            if row_counter != (len(shop_array) / 4):
+                item_y += 186
 
     return shop_image, item_y
 
